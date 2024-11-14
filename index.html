@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste da Classe Heroi - Jogo de Aventura</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Aventura Épica!</h1>
+        <p>Escolha um herói para ver seu ataque!</p>
+
+        <div id="herois">
+            <!-- Heróis serão exibidos aqui -->
+        </div>
+
+        <div id="resultado">
+            <p id="mensagem"></p>
+        </div>
+    </div>
+
+    <script src="heroi.js"></script>  <!-- Link para o arquivo JS -->
+    <script>
+        // Criando heróis e adicionando botões para cada um
+        const herois = [
+            new Heroi('Gandalf', 1000, 'mago'),
+            new Heroi('Conan', 30, 'guerreiro'),
+            new Heroi('Shaolin', 45, 'monge'),
+            new Heroi('Naruto', 16, 'ninja')
+        ];
+
+        const heroisDiv = document.getElementById('herois');
+        const mensagemDiv = document.getElementById('mensagem');
+
+        // Função para criar os botões de ataque
+        herois.forEach(heroi => {
+            const button = document.createElement('button');
+            button.innerText = `Atacar com ${heroi.nome}`;
+            button.onclick = () => {
+                const resultado = heroi.atacar();
+                mensagemDiv.innerText = resultado;
+            };
+            heroisDiv.appendChild(button);
+        });
+    </script>
+</body>
+</html>
